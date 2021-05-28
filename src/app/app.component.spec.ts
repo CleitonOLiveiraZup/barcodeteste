@@ -1,29 +1,31 @@
-import {TestBed, waitForAsync} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {WebcamComponent} from './modules/webcam/webcam/webcam.component';
-import {FormsModule} from '@angular/forms';
+import { TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        WebcamComponent
+        AppComponent
       ],
-      imports: [
-        FormsModule
-      ]
     }).compileComponents();
-  }));
-  it('should create the app', waitForAsync(() => {
+  });
+
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  }));
-  it('should render title in a h1 tag', waitForAsync(() => {
+  });
+
+  it(`should have as title 'webCan'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('webCan');
+  });
+
+  it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Ngx-Webcam Demo');
-  }));
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.content span').textContent).toContain('webCan app is running!');
+  });
 });
